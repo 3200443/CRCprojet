@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>625</x>
+      <y>145</y>
+      <w>120</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>	Logicos
+--
+
+- _cmt : int
+- _difficulte : int 
+- _score_jeu : int
+- _val_rand : int
+- _reponse_user : int
+- _reussi : bool
+
+--
++ Logicos(int difficulte);
+
++ get_cmt(): int
++ set_cmt(int nb) : void
+
++ get_score_jeu() : int
++ set_score_jeu() : void
+
++ get_val_rand() : int
++ set_reponse(int nb) : void
++ get_reussi() : bool
++ compare() : int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>470</x>
+      <y>140</y>
+      <w>130</w>
+      <h>205</h>
+    </coordinates>
+    <panel_attributes>	Guerre
+--
+
+- _val_rand : int
+- _cmt : int
+- _cmt_chrono : float
+- _temps_final : float
+- _score_jeu : int
+
+--
++ Guerre()
+
++ gene_val_rand() : int
+
++ get_score_jeu() int
++ set_score_jeu(int nb) : void
+
++ get_cmt() : int
++ increment_cmt() : void
+
++ get_cmt_chrono() : float
++ increment_cmt_chrono() : float
+
++ get_temps_final() : float
++ set_temps_final(float nb) : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>35</y>
+      <w>175</w>
+      <h>460</h>
+    </coordinates>
+    <panel_attributes>	Calcul
+--
+
+- _cmt_pts : int
+- _cmt :int
+
+- _val1_equa1 : int
+- _val2_equa1 : int
+
+- _val1_equa2 : int
+- _val2_equa2 : int
+
+- _val1_equa3 : int
+- _val2_equa3 : int
+
+- _val1_equa4 : int
+- _val2_equa4 : int
+
+- _val1_equa5 : int
+- _val2_equa5 : int
+
+- _resultat_equa1 : int
+- _resultat_equa2 : int
+- _resultat_equa3 : int
+- _resultat_equa4 : int
+- _resultat_equa5 : int
+
+--
+
++ Calcul();
+
++ get_cmt_pts() : int
++ increment_cmt_pts() : void
+
++ get_cmt() : int
++ increment_cmt() : void
+
++ get_val1_equa1() : int
++ get_val2_equa1() : int
+
++ get_val1_equa2() : int
++ get_val2_equa2() : int
+
++ get_val1_equa3() : int
++ get_val2_equa3() : int
+
++ get_val1_equa4() : int
++ get_val2_equa4() : int
+
++ get_val1_equa5() : int
++ get_val2_equa5() : int
+
++ get_resultat_equa1() : int
++ get_resultat_equa2() : int
++ get_resultat_equa3() : int
++ get_resultat_equa4() : int
++ get_resultat_equa5() : int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
