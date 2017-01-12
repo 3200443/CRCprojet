@@ -42,7 +42,7 @@
        <bool>false</bool>
       </property>
       <property name="currentIndex">
-       <number>6</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="page1">
        <layout class="QGridLayout" name="gridLayout">
@@ -1320,8 +1320,8 @@
                </layout>
               </widget>
               <widget class="QWidget" name="tFindeJeu">
-               <layout class="QVBoxLayout" name="verticalLayout_27">
-                <item>
+               <layout class="QGridLayout" name="gridLayout_10">
+                <item row="0" column="0">
                  <layout class="QVBoxLayout" name="verticalLayout_23">
                   <item>
                    <spacer name="verticalSpacer_27">
@@ -1356,6 +1356,43 @@
                     </item>
                     <item>
                      <spacer name="horizontalSpacer_44">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_65">
+                    <item>
+                     <spacer name="horizontalSpacer_117">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_27">
+                      <property name="text">
+                       <string>Vous aviez de toute façon une chance sur dix de gagner !</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_122">
                       <property name="orientation">
                        <enum>Qt::Horizontal</enum>
                       </property>
@@ -1872,8 +1909,8 @@
        </layout>
       </widget>
       <widget class="QWidget" name="pagefinjeu">
-       <layout class="QVBoxLayout" name="verticalLayout_31">
-        <item>
+       <layout class="QGridLayout" name="gridLayout_9">
+        <item row="0" column="0">
          <layout class="QVBoxLayout" name="verticalLayout_30">
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_26">
@@ -3682,32 +3719,6 @@ p, li { white-space: pre-wrap; }
        </layout>
       </widget>
      </widget>
-    </item>
-    <item>
-     <spacer name="horizontalSpacer_118">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item>
-     <spacer name="horizontalSpacer_117">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
     </item>
    </layout>
   </widget>

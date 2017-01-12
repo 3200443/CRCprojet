@@ -308,28 +308,9 @@ void MainWindow::on_bfin_clicked()
 
 bool MainWindow::resultat()
 {
-    int temp[6] = {0};
-    float moy = 0;
-    const std::string nom_p[5] = {"curieux","guerre","logicos","matheux","N-A"};
-    for(auto & iterm : _monde)
-    {
-        for(auto & iterp : iterm->get_partis())
-        {
-            for(int i = 0; i < 5 ; i++)
-            {
-                if(iterp.first.get_nom().compare(nom_p[i]))
-                {
-                    temp[i] += iterp.second;
-                    temp[5] += iterp.second;
-                }
-            }
-        }
-    }
-    for(int i = 0; i < 5; i++)
-    {
-        moy += temp[i]*_popularite[i];
-    }
-    if(moy/(float)temp[5] > 60)
+// Elections piege a con => 1 chance sur 10 d etre elu.
+
+    if(rand()%10 == 1)
         return 1;
     return 0;
 }
@@ -885,3 +866,4 @@ void MainWindow::init_int_jeu_Log()
     ui->resul_pop_2->setText("");
     ui->conseil->setText("");
 }
+
