@@ -44,6 +44,16 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(_m_timer, SIGNAL(timeout()), this, SLOT(Jeu_button()));
     connect(_m_timer, SIGNAL(timeout()), this, SLOT(chronometre()));
 
+    ui->pushButton_5->setEnabled(false);
+    ui->pushButton_6->setEnabled(false);
+    ui->pushButton_7->setEnabled(false);
+    ui->pushButton_8->setEnabled(false);
+    ui->pushButton_9->setEnabled(false);
+    ui->pushButton_10->setEnabled(false);
+    ui->pushButton_11->setEnabled(false);
+    ui->pushButton_12->setEnabled(false);
+    ui->pushButton_13->setEnabled(false);
+
     ui->nb_clic->setText("0");
     delete palette;
 
