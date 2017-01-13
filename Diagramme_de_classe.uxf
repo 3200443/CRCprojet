@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
-  <zoom_level>5</zoom_level>
+  <zoom_level>3</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>625</x>
-      <y>145</y>
-      <w>120</w>
-      <h>190</h>
+      <x>438</x>
+      <y>384</y>
+      <w>72</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>	Logicos
 --
@@ -37,10 +37,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>470</x>
-      <y>140</y>
-      <w>130</w>
-      <h>205</h>
+      <x>198</x>
+      <y>363</y>
+      <w>78</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>	Guerre
 --
@@ -73,10 +73,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>270</x>
-      <y>35</y>
-      <w>175</w>
-      <h>460</h>
+      <x>303</x>
+      <y>381</y>
+      <w>105</w>
+      <h>303</h>
     </coordinates>
     <panel_attributes>	Calcul
 --
@@ -137,5 +137,359 @@
 + get_resultat_equa5() : int
 </panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>585</x>
+      <y>300</y>
+      <w>78</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>	Pays
+--
+
+# _nbHab : int
+# _nom : const string
+# _partis : map&lt;Parti,int&gt;
+
+--
+
++ Pays(int)
++ sondage() : virtual void
++ operator&lt;(const Pays &amp;) : bool const
++ display() : virtual string const
+
++ get_nom() : string const
++ get_basic() : virtual string const
++ get_nbhab() int
++ get_partis() : virtual string const 
+
+- creer_nom() : string
+- creer_partis(int n) : string
+		
+		
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>804</x>
+      <y>342</y>
+      <w>78</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>	Parti
+--
+
+- _nom : string
+- _nom_p[MAX_P] : static const string
+
+--
+
++ Parti();
++ get_nom() : string const
++ get_lobby() : vector&lt;std::string&gt;  const
++ operator&lt;(const Parti &amp;) : bool const;
++ display() : string const;
+		
+		
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>546</x>
+      <y>369</y>
+      <w>78</w>
+      <h>51</h>
+    </coordinates>
+    <panel_attributes>	Democratie
+--
+
+--
+
++ Democratie();
++ sondage() : virtual void 
++ display() : virtual string const
++ get_basic() : virtual string const;
+		
+		
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>666</x>
+      <y>372</y>
+      <w>78</w>
+      <h>57</h>
+    </coordinates>
+    <panel_attributes>	Tyrannie
+--
+
+--
+
++ Tyrannie();
++ display() : virtual string const
++ get_basic() : virtual string const;
+		
+		
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>525</x>
+      <y>480</y>
+      <w>78</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>	Federation
+--
+- _id : int const
+--
+
++ Federation()
++ display() : string const;
++ sondage() : void
++ get_basic() : string const;
+		
+		
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>612</x>
+      <y>483</y>
+      <w>78</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>	NFederation
+--
+- _type : char 
+--
+
++ NFederation()
++ display() : string const;
++ sondage() : void
++ get_basic() : string const;
+
+- init() : int		
+		
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>330</x>
+      <y>150</y>
+      <w>105</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>	main_window
+--
+
+- _nbpays : int
+- _tour : int
+- _nomj : string
+- _monde : vector&lt;Pays*&gt;
+- _popularite[5] ; int
+- _difficulte : int
+- _sondages short
+
+- _notes : QString
+- _m_timer : QTimer* 
+
+- _l : Labyrinthe* 
+- _jeu_logicos : Logicos* 
+- _jeu_guerre : Guerre*
+- _jeu_calcul : Calcul*
+
+--
+
+- on_boption_clicked() : void 
+- on_bretour_clicked() ; void
+- on_bjouer_clicked() : void
+- on_bretour2_clicked() : void
+- on_btabnoteafficher_clicked() : void
+- on_btnotemodifier_clicked() : void
+- on_babandonner_clicked() : void
+- on_pushButton_clicked() : void
+- on_listWidget_itemSelectionChanged() : void
+- on_bVoyager_clicked() : void
+- on_bfin_clicked() : void
+- on_listWidget_itemClicked() : void
+- on_bsonder_clicked() : void
+- on_bfinminijeu_clicked()  : void
+- on_bporte1_clicked() : void
+- on_bporte2_clicked() : void
+- on_bporte3_clicked()  : void
+- on_blabarriere_clicked() : void
+- on_bquit3_clicked() : void
+- on_blababa_clicked() : void
+- on_bvaccontinuer_clicked() : void
+- on_bvalider_jeu2_valeur_clicked()  : void
+- on_next_jeu3_clicked() : void
+- on_go_timer_clicked() : void
+- on_pushButton_13_clicked() : void
+- on_pushButton_8_clicked() : void
+- on_pushButton_5_clicked() : void
+- on_pushButton_11_clicked() : void
+- on_pushButton_7_clicked() : void
+- on_pushButton_6_clicked() : void
+- on_pushButton_12_clicked() : void
+- on_pushButton_9_clicked() : void
+- on_pushButton_10_clicked() : void
+- on_next_jeu3_2_clicked() : void
+- on_go_jeu_calcul_clicked() : void
+- on_valider_calcul1_clicked() : void
+- on_valider_calcul2_clicked() : void
+- on_valider_calcul3_clicked() : void
+- on_valider_calcul4_clicked() : void
+- on_valider_calcul5_clicked() : void
+- on_next_jeu3_3_clicked() : void
+- Jeu_button() : void
+- chronometre() : void
+- Calcul_pop_jeu3() : void
+- Action_jeu_clic() : void
+- Fin_jeu_calcul() : void
+
+- mode1() : void
+- fin() : void
+- resultat() : bool
+- inipop() ; void
+- gerer_lab(int i) : int
+- fin_minijeu(bool r) : void
+- event() : void
+- creer_lab() : void
+- set_pop() : void
+- init_int_jeu_Gue() : void
+- init_int_jeu_Cal() : void
+- init_int_jeu_Log() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>237</x>
+      <y>303</y>
+      <w>111</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>350.0;10.0;10.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>348</x>
+      <y>303</y>
+      <w>48</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>417</x>
+      <y>303</y>
+      <w>54</w>
+      <h>87</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;270.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>432</x>
+      <y>282</y>
+      <w>159</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;510.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>639</x>
+      <y>333</y>
+      <w>57</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>582</x>
+      <y>333</y>
+      <w>51</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>312</y>
+      <w>150</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;480.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>558</x>
+      <y>417</y>
+      <w>33</w>
+      <h>69</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>426</y>
+      <w>60</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>180.0;10.0;10.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>594</x>
+      <y>417</y>
+      <w>51</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;220.0</additional_attributes>
   </element>
 </diagram>
