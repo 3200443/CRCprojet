@@ -21,7 +21,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //ui->cnbpays->setValidator(new QIntValidator(2,20,this));
     ui->spinBox->setRange(5,NB_PAYS_MAX);
     ui->spinBox->setValue(2);
     ui->cnomj->setText("Joueur");
@@ -55,6 +54,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pushButton_13->setEnabled(false);
 
     ui->nb_clic->setText("0");
+
+    const std::string nom_p[5] = {"curieux","guerre","logicos","matheux","N-A"};
+    ui->label_p1->setText(QString::fromStdString(nom_p[0]));
+    ui->label_p2->setText(QString::fromStdString(nom_p[1]));
+    ui->label_p3->setText(QString::fromStdString(nom_p[2]));
+    ui->label_p4->setText(QString::fromStdString(nom_p[3]));
+
     delete palette;
 
 
@@ -66,17 +72,17 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_boption_clicked()
+void MainWindow::on_boption_clicked() // Pour aller dans les options
 {
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-void MainWindow::on_bretour_clicked()
+void MainWindow::on_bretour_clicked() //Sortir des options
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-void MainWindow::creer_lab()
+void MainWindow::creer_lab()  // Creer un labyrinthe coherant
 {
     do
     {
@@ -91,7 +97,7 @@ void MainWindow::creer_lab()
 
 }
 
-void MainWindow::inipop()
+void MainWindow::inipop() //  initialisation de la popularité
 {
     if(ui->rfacile->isChecked())
     {
@@ -113,10 +119,9 @@ void MainWindow::inipop()
         for(int i = 0; i < 5; i++)
             _popularite[i] = 20;
     }
-    creer_lab();
 }
 
-void MainWindow::on_bjouer_clicked()
+void MainWindow::on_bjouer_clicked() //initialisation du monde et de la popularité
 {
     std::set<Pays> temp;
     Pays* p;
@@ -157,7 +162,7 @@ void MainWindow::on_bretour2_clicked()
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-void MainWindow::mode1(){
+void MainWindow::mode1(){ //initialisation des minijeux et de l'interface
     _sondages = 2;
     _tour = 0;
     _nomj = ui->cnomj->text().toStdString();
@@ -167,7 +172,6 @@ void MainWindow::mode1(){
     ui->progressBar->reset();
 
 
-    // nb_tours = nb_pays
     for(auto& iter : _monde)
     {
         ui->listWidget->addItem(QString::fromStdString((*iter).get_nom()));
@@ -175,11 +179,6 @@ void MainWindow::mode1(){
 
 
     //popularité
-    const std::string nom_p[5] = {"curieux","guerre","logicos","matheux","N-A"};
-    ui->label_p1->setText(QString::fromStdString(nom_p[0]));
-    ui->label_p2->setText(QString::fromStdString(nom_p[1]));
-    ui->label_p3->setText(QString::fromStdString(nom_p[2]));
-    ui->label_p4->setText(QString::fromStdString(nom_p[3]));
     set_pop();
 
     ui->ljeunbj->setText(QString::fromStdString(_nomj));
@@ -191,6 +190,7 @@ void MainWindow::mode1(){
     _jeu_logicos = new Logicos(_difficulte);  // facile = 0, normale = 1; difficile = 2;
     _jeu_guerre = new Guerre();
     _jeu_calcul = new Calcul();
+    creer_lab();
 
     ui->ljpopmond->setText(QString::number(temp));
     ui->stackedWidget_2->setCurrentIndex(0);
@@ -201,7 +201,7 @@ void MainWindow::on_btabnoteafficher_clicked()
 {
     ui->ctnote->setText(_notes);
 }
-void MainWindow::set_pop()
+void MainWindow::set_pop() //affiche la popularité actuelle
 {
     // Vérifications
     for(int i = 1; i < MAX_P; i++) {
@@ -222,7 +222,7 @@ void MainWindow::on_btnotemodifier_clicked()
 void MainWindow::on_babandonner_clicked()
 {
     _notes = "";
-    ui->listWidget->clear(); //TODO: clear() devrait suffir mais valgrind ne semble aps etre satisfait, a revoir
+    ui->listWidget->clear(); //TODO: clear() devrait suffir mais valgrind ne semble pas être satisfait, à revoir
     for(auto iter : _monde)
         delete iter;
     _monde.clear();
@@ -234,14 +234,14 @@ void MainWindow::on_babandonner_clicked()
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_pushButton_clicked() //Lorsque l on clique su le bouton joeur on doit initialiser la suite
 {
     ui->bVoyager->setEnabled(false);
     ui->bsonder->setEnabled(false);
     mode1();
 }
 
-void MainWindow::on_listWidget_itemSelectionChanged()
+void MainWindow::on_listWidget_itemSelectionChanged() //gestion de la liste
 {
     if(_nbpays > _tour)
     {
@@ -257,7 +257,7 @@ void MainWindow::on_listWidget_itemSelectionChanged()
     }
 }
 
-void MainWindow::on_bVoyager_clicked()
+void MainWindow::on_bVoyager_clicked() // progression du jeu principal et determination du minijeu
 {
     ui->bVoyager->setEnabled(false);
     ui->bsonder->setEnabled(false);
@@ -281,7 +281,7 @@ void MainWindow::on_bVoyager_clicked()
     }
 }
 
-void MainWindow::fin()
+void MainWindow::fin() // Determine si le jeu est teminé ou non
 {
     if(_nbpays - _tour > 0)
     {
@@ -316,7 +316,7 @@ void MainWindow::on_bfin_clicked()
     ui->stackedWidget_2->setCurrentIndex(2);
 }
 
-bool MainWindow::resultat()
+bool MainWindow::resultat()//determine si le joueur gagne ou non ...
 {
 // Elections piege a con => 1 chance sur 10 d etre elu.
 
@@ -325,14 +325,14 @@ bool MainWindow::resultat()
     return 0;
 }
 
-void MainWindow::on_listWidget_itemClicked()
+void MainWindow::on_listWidget_itemClicked() // Force le clic su l item permet d eviter des soucis lors de suppression notamment
 {
     if(_sondages > 0 && ! ui->bVoyager->isEnabled())
         ui->bsonder->setEnabled(true);
     ui->bVoyager->setEnabled(true);
 }
 
-void MainWindow::on_bsonder_clicked()
+void MainWindow::on_bsonder_clicked() // Affiche des informations complementaires
 {
     ui->bsonder->setDisabled(true);
     if(_sondages > 0)
@@ -351,10 +351,10 @@ void MainWindow::on_bsonder_clicked()
     }
 }
 
-int MainWindow::gerer_lab(int i)
+int MainWindow::gerer_lab(int i) // gestion de l affichage du labyrinthe
 {
     char temp;
-    switch(i)
+    switch(i) // deplacement
     {
         case -1:
             temp = _l->get_suivant(-1);
@@ -374,13 +374,13 @@ int MainWindow::gerer_lab(int i)
         default : temp = 14;
             break;
     }
-    if(temp >= 10)
+    if(temp >= 10) //verification de si on ne se trouve pas a la tete
     {
         ui->blabarriere->setEnabled(false);
         if(temp == 14)
             return 4;
         temp -=10;
-    }else
+    }else // Mise a jour de l affichage des portes
     {
         ui->blabarriere->setEnabled(true);
     }
@@ -415,7 +415,7 @@ int MainWindow::gerer_lab(int i)
     }
     return temp;
 }
-void MainWindow::fin_minijeu(bool r)
+void MainWindow::fin_minijeu(bool r) // Affichage du resultat  d un minijeu
 {
     if(r)
         ui->cfinminijeu->setText("REUSSITE");
@@ -425,6 +425,7 @@ void MainWindow::fin_minijeu(bool r)
     ui->stackedWidget->setCurrentIndex(5);
 }
 
+//Bouton des portes
 void MainWindow::on_bfinminijeu_clicked()
 {
     fin();
@@ -450,6 +451,7 @@ void MainWindow::on_blabarriere_clicked()
     gerer_lab(3);
 }
 
+//determination du prochain minijeu
 void MainWindow::event()
 {
     int r = rand()%5;
@@ -477,7 +479,6 @@ void MainWindow::on_bquit3_clicked()
 {
     for(auto iter : _monde)
         delete iter;
-    delete _l;
 }
 
 

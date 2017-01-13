@@ -42,7 +42,7 @@
        <bool>false</bool>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>6</number>
       </property>
       <widget class="QWidget" name="page1">
        <layout class="QGridLayout" name="gridLayout">
@@ -3835,6 +3835,22 @@ p, li { white-space: pre-wrap; }
     <hint type="destinationlabel">
      <x>76</x>
      <y>51</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spin_reponse</sender>
+   <signal>editingFinished()</signal>
+   <receiver>bvalider_jeu2_valeur</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>469</x>
+     <y>354</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>553</x>
+     <y>354</y>
     </hint>
    </hints>
   </connection>

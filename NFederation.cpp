@@ -37,7 +37,6 @@ void NFederation::sondage()
 
 std::string NFederation::display() const
 {
-	//printf("display_Nfederation");	//TODO: wtf??
 	return Pays::display() + "\n" + get_basic();
 }
 std::string NFederation::get_basic()const

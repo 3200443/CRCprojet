@@ -49,8 +49,8 @@ std::map<Parti, int> Pays::creer_partis(int n)
     assert(n>0);
 	std::map<Parti,int> partis;
 	while(partis.size() < (unsigned)n)
-	{
-		partis.insert(std::make_pair(Parti(), rand()%10000+10000));//TODO: TESTER SIZE POUR SAVOIR SI UN NEW EST NECESSAIRE
+    {
+        partis.insert(std::make_pair(Parti(), rand()%10000+10000));
 	}
 	return partis;
 }
@@ -64,7 +64,6 @@ Pays::Pays(int n)
   	{
     	_nbHab+= iter.second;
   	}
-    //std::cout<<"pays cree"<<std::endl;
 }
 ///////////////////////////////////////////////////////////////////////////////
 bool Pays::operator<(const Pays & p) const
@@ -86,7 +85,7 @@ std::string Pays::display() const
     for(const auto& it : _partis)
     {
          oss <<it.first.display();
-         oss << "Nombre d'adherants : " << it.second << std::endl; //TODO: un peu craqué d avoir cette information, par contre ca en serait une bonne pour sondage
+         oss << "Nombre d'adherants : " << it.second << std::endl;
     }
     oss << std::endl;
     return oss.str();

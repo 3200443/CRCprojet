@@ -18,7 +18,7 @@ std::string Tyrannie::display() const
 }
 std::string Tyrannie::get_basic()const
 {
-    return "Poplation:" + std::to_string(_nbHab) + "\n" +"Tyrannie\n"; //TODO: POLYMORPHISME
+    return "Poplation:" + std::to_string(_nbHab) + "\n" +"Tyrannie\n";
 }
 Tyrannie::~Tyrannie()
 {
