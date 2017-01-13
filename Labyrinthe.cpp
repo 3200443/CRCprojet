@@ -51,7 +51,7 @@ void Labyrinthe::creer_lab_fin(Noeud* p)
         creer_lab_fin(temp);
     }else
     {
-        p->isArrivee = true;
+        p->isArrivee = true; //Warning etrange ici
     }
 }
 
@@ -88,7 +88,6 @@ void Labyrinthe::detruire_lab(Noeud* p)
         {
             detruire_lab(iter);
         }
-
     }else
     {
         delete p;

@@ -43,6 +43,16 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(_m_timer, SIGNAL(timeout()), this, SLOT(Jeu_button()));
     connect(_m_timer, SIGNAL(timeout()), this, SLOT(chronometre()));
 
+    ui->nb_clic->setText("0");
+
+
+    init_gui();
+    delete palette;
+
+
+}
+void MainWindow::init_gui()
+{
     ui->pushButton_5->setEnabled(false);
     ui->pushButton_6->setEnabled(false);
     ui->pushButton_7->setEnabled(false);
@@ -53,17 +63,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pushButton_12->setEnabled(false);
     ui->pushButton_13->setEnabled(false);
 
-    ui->nb_clic->setText("0");
-
     const std::string nom_p[5] = {"curieux","guerre","logicos","matheux","N-A"};
     ui->label_p1->setText(QString::fromStdString(nom_p[0]));
     ui->label_p2->setText(QString::fromStdString(nom_p[1]));
     ui->label_p3->setText(QString::fromStdString(nom_p[2]));
     ui->label_p4->setText(QString::fromStdString(nom_p[3]));
-
-    delete palette;
-
-
 }
 
 MainWindow::~MainWindow()
@@ -94,7 +98,6 @@ void MainWindow::creer_lab()  // Creer un labyrinthe coherant
         else
             break;
     }while(1);
-
 }
 
 void MainWindow::inipop() //  initialisation de la popularité
@@ -351,29 +354,29 @@ void MainWindow::on_bsonder_clicked() // Affiche des informations complementaire
     }
 }
 
-int MainWindow::gerer_lab(int i) // gestion de l affichage du labyrinthe
+int MainWindow::deplacement_lab(int i)
 {
-    char temp;
     switch(i) // deplacement
     {
         case -1:
-            temp = _l->get_suivant(-1);
-            break;
+            return _l->get_suivant(-1);
         case 0:
-            temp = _l->get_suivant(0);
-            break;
+            return _l->get_suivant(0);
         case 1:
-            temp = _l->get_suivant(1);
-            break;
+            return _l->get_suivant(1);
         case 2:
-            temp = _l->get_suivant(2);
-            break;
+            return _l->get_suivant(2);
         case 3:
-            temp = _l->get_precedent();
-            break;
-        default : temp = 14;
-            break;
+            return _l->get_precedent();
+        default :
+            return 14;
     }
+}
+
+int MainWindow::gerer_lab(int i) // gestion de l affichage du labyrinthe
+{
+    char temp = (char)deplacement_lab(i);
+
     if(temp >= 10) //verification de si on ne se trouve pas a la tete
     {
         ui->blabarriere->setEnabled(false);
@@ -415,6 +418,7 @@ int MainWindow::gerer_lab(int i) // gestion de l affichage du labyrinthe
     }
     return temp;
 }
+
 void MainWindow::fin_minijeu(bool r) // Affichage du resultat  d un minijeu
 {
     if(r)
@@ -450,7 +454,6 @@ void MainWindow::on_blabarriere_clicked()
 {
     gerer_lab(3);
 }
-
 //determination du prochain minijeu
 void MainWindow::event()
 {
@@ -481,8 +484,6 @@ void MainWindow::on_bquit3_clicked()
         delete iter;
 }
 
-
-
 void MainWindow::on_blababa_clicked()
 {
     delete _l;
@@ -494,12 +495,7 @@ void MainWindow::on_bvaccontinuer_clicked()
 {
     fin();
 }
-
-
-
-
 // ========== Jeu Logicos ============
-
 void MainWindow::on_bvalider_jeu2_valeur_clicked()
 {
     if(_jeu_logicos->get_cmt() > 0){
@@ -514,9 +510,7 @@ void MainWindow::on_bvalider_jeu2_valeur_clicked()
             case 2 : ui->conseil->setText("Il faut un nombre plus petit !");
                     break;
         }
-
      }
-
         QString coup = QString("%1").arg(_jeu_logicos->get_cmt());
         ui->coups_restants->setText(coup);
 
@@ -531,8 +525,6 @@ void MainWindow::on_bvalider_jeu2_valeur_clicked()
              _jeu_logicos->set_score_jeu();
              QString score = QString ("Vous avez gagnez, +%1 points dans la popularite du parti Logicos ").arg(_jeu_logicos->get_score_jeu());
              ui->resul_pop_2->setText(score);
-
-
          }else{
               ui->resul_pop_2->setText(" Vous avez perdu, pas de points dans la popularite du parti Logicos ");
          }
@@ -548,10 +540,7 @@ void MainWindow::on_next_jeu3_clicked()
     init_int_jeu_Log();
     fin_minijeu(temp > 0 ? true : false);
 }
-
 // ========== Jeu Guerre ============
-
-
 void MainWindow::Jeu_button(){
 
 
@@ -621,6 +610,7 @@ void MainWindow::Calcul_pop_jeu3(){
     }
 
 }
+
 void MainWindow::Action_jeu_clic(){
     _jeu_guerre->increment_cmt();
 

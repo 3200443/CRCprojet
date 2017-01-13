@@ -43,7 +43,6 @@ private slots:
 
     void on_pushButton_clicked();
 
-
     void on_listWidget_itemSelectionChanged();
 
     void on_bVoyager_clicked();
@@ -162,6 +161,10 @@ private:
     void init_int_jeu_Cal();
 
     void init_int_jeu_Log();
+
+    int deplacement_lab(int i);
+
+    void init_gui();
 };
 
 #endif // MAINWINDOW_HH
